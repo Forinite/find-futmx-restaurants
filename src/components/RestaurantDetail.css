@@ -1,0 +1,373 @@
+/* Variable Setup for consistent theming */
+:root {
+    --primary-color: #ff5722; /* Vibrant Orange */
+    --text-dark: #1a1a1a;
+    --text-grey: #666;
+    --bg-light: #f9f9f9;
+    --white: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --radius: 12px;
+}
+
+.restaurant-page {
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    padding-bottom: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+.back-btn {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.hero-content {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.hero-tag {
+    background: var(--primary-color);
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin: 10px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-meta {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.status-badge.open { background: #4caf50; color: white; }
+.status-badge.closed { background: #e53935; color: white; }
+
+/* --- Layout Grid --- */
+.content-container {
+    max-width: 1200px;
+    margin: -40px auto 0;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Main Content --- */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.details-bar {
+    background: var(--white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-item .label {
+    font-size: 0.85rem;
+    color: var(--text-grey);
+    text-transform: uppercase;
+}
+
+.detail-item .value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.section {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.section h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+}
+
+.description {
+    line-height: 1.6;
+    color: var(--text-grey);
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.feature-tag {
+    background: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Reviews */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-card {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 16px;
+}
+
+.review-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.review-text {
+    margin: 0 0 8px;
+    color: #444;
+}
+
+.review-date {
+    color: #999;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    position: relative;
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.action-card, .hours-card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.address-text {
+    color: var(--text-grey);
+    margin-bottom: 16px;
+}
+
+.map-preview {
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.btn-primary:hover {
+    background: #e64a19;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #ddd;
+    color: var(--text-dark);
+}
+
+.btn-outline:hover {
+    border-color: var(--text-dark);
+}
+
+.hours-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hour-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.95rem;
+}
+
+.hour-row:last-child {
+    border-bottom: none;
+}
+
+.day {
+    text-transform: capitalize;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.time {
+    color: var(--text-grey);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .content-container {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+        padding: 15px;
+    }
+
+    .details-bar {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .sidebar {
+        order: -1; /* Puts actions above content on mobile if desired, or remove to keep at bottom */
+    }
+
+    .sticky-wrapper {
+        position: static;
+    }
+}
+
+/* Add/Update these classes in RestaurantDetail.css */
+
+.contact-text {
+    color: var(--text-grey);
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+/* Make the phone number slightly bolder/darker to stand out */
+.phone-highlight {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-family: monospace; /* Optional: makes numbers easier to read */
+    font-size: 1rem;
+    background: #f4f4f4;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 16px; /* Extra space before map */
+}

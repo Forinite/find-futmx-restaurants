@@ -1,0 +1,154 @@
+{/*src/index.css:1*/}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.map-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.restaurant-marker {
+  width: 15px;
+  height: 15px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/3075/3075977.png");
+  background-size: cover;
+  cursor: pointer;
+}
+
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
+.restaurant-marker-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%); /* helps centering in some cases */
+}
+
+/* Common ring styles */
+.pulse-ring {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  /*z-index: -9;*/
+  border-radius: 50%;
+  border: 3px solid #006347;
+  pointer-events: none;
+}
+
+/* Outer ring – subtle, larger, slower pulse */
+.pulse-ring.outer {
+  width: 80px;
+  height: 80px;
+  border-color: rgba(256, 99, 26, 0.1);  /* semi-transparent */
+  animation: outerPulse 5s infinite ease-out;
+  background-color: gold;
+  /*z-index: -9;*/
+
+
+}
+
+/* Inner ring – starts small, grows big, fades, more visible */
+.pulse-ring.inner {
+  width: 40px;
+  height: 40px;
+  border-color: #ff332200;
+  background-color: white;
+  animation: innerPulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  /*z-index: -9;*/
+}
+
+/* Outer: slow, subtle ripple */
+@keyframes outerPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.1;
+  }
+
+  40% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0.2;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.1;
+  }
+}
+
+/* Inner: quicker grow → slow fade at the end */
+@keyframes innerPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0.3;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0.1;
+  }
+}
+.pulse-rings-wrapper {
+  position: relative;
+}

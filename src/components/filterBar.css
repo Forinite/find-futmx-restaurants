@@ -1,0 +1,166 @@
+.filter-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 0 16px;
+    z-index: 1000;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Select wrapper styled like button */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    appearance: none;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    padding: 6px 28px 6px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    height: 32px;
+}
+
+/* Dropdown arrow */
+.select-wrapper::after {
+    content: "▾";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    color: #555;
+    pointer-events: none;
+}
+
+/* Open Now Button */
+.filter-button {
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    height: 32px;
+}
+
+.filter-button.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.filter-button:hover,
+.select-wrapper select:hover {
+    background: #f0f0f0;
+}
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: #ddd;
+}
+
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.filter-chip:hover {
+    background: #f0f0f0;
+}
+
+.filter-chip.active {
+    background: #ffe8cc;
+    border-color: #ffaa00;
+    color: #d46a00;
+}
+
+.filter-chip.open {
+    background: #ffe8cc;
+    border-color: #ffaa00;
+}
+
+.chip-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+}
+
+.chip-arrow {
+    margin-left: 6px;
+    transition: transform 0.2s;
+}
+
+.filter-chip.open .chip-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: fixed;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    min-width: 140px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.dropdown-item.selected {
+    background: #fff8e6;
+    font-weight: 500;
+}
+
+.check-mark {
+    color: #28a745;
+    font-weight: bold;
+}
