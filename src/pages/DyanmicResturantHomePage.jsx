@@ -3,10 +3,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { restaurants } from '../data/restaurants';
-import { isRestaurantOpen } from '../utils/timeUtils'; // Your util
-import { calculateDistance } from '../utils/distance'; // Your util
-import SpecificMap from '../components/SpecificMap'; // Your map component
-// import OfflineMapWrapper from '../components/OfflineMapWrapper'; // Your offline guard
+import { isRestaurantOpen } from '../utils/timeUtils';
+import { calculateDistance } from '../utils/distance';
+import SpecificMap from '../components/SpecificMap';
+import FeatureModal from '../components/FeatureModal';
+
+// import OfflineMapWrapper from '../components/OfflineMapWrapper'; //  offline guard
 
 // Icons (Using feather icons or similar standard SVG)
 import {
@@ -27,6 +29,13 @@ const DynamicRestaurantHomePage = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [distance, setDistance] = useState(null);
     const [menuPage, setMenuPage] = useState(0);
+
+    // --- MODAL STATE ---
+    const [modalConfig, setModalConfig] = useState({
+        isOpen: false,
+        title: "",
+        message: ""
+    });
 
 
     const restaurant = restaurants.find((r) => r.id === Number(id));
@@ -94,6 +103,19 @@ const DynamicRestaurantHomePage = () => {
         return chunks;
     }, [restaurant.menu]);
 
+
+    // ---  Feature Handler ---
+    const showFeatureNotReady = (title, message) => {
+        setModalConfig({
+            isOpen: true,
+            title: title,
+            message: message
+        });
+    };
+
+    const closeModal = () => {
+        setModalConfig({ ...modalConfig, isOpen: false });
+    };
 
 
     // --- Render Functions ---
@@ -193,7 +215,7 @@ const DynamicRestaurantHomePage = () => {
                                                     {item.price ? `${item.price.toLocaleString()}` : 'Price on request'}
                                                 </span>
                                             </div>
-                                            <button className="dr-add-btn">+</button>
+                                            <button  className="dr-add-btn" onClick={() => showFeatureNotReady("Add to Cart", `Adding "${item.name}" to cart is coming soon!`)}>+</button>
                                         </div>
                                     ))}
                                 </div>
@@ -363,7 +385,7 @@ const DynamicRestaurantHomePage = () => {
                 ))}
             </div>
 
-            <button className="dr-write-review-btn">Write a Review</button>
+            <button className="dr-write-review-btn" onClick={() => showFeatureNotReady("Reviews Locked", "Only users who have ordered from this restaurant can leave a review.")}>Write a Review</button>
         </div>
     );
 
@@ -377,6 +399,14 @@ const DynamicRestaurantHomePage = () => {
                 {activeTab === 'contact' && renderContactSection()}
                 {activeTab === 'reviews' && renderReviewsSection()}
             </div>
+
+            {/* --- MODAL COMPONENT --- */}
+            <FeatureModal
+                isOpen={modalConfig.isOpen}
+                onClose={closeModal}
+                title={modalConfig.title}
+                message={modalConfig.message}
+            />
         </div>
     );
 }
