@@ -13,19 +13,71 @@ import L from "leaflet";
 import { restaurants } from "../data/restaurants";
 import { calculateDistance } from "../utils/distance";
 import "leaflet/dist/leaflet.css";
+import "./MapComponent.css"; // Ensure you create/link this CSS file
+
 
 // Fix default marker icons
+// delete L.Icon.Default.prototype._getIconUrl;
+// L.Icon.Default.mergeOptions({
+//     iconRetinaUrl:
+//         "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+//     iconUrl:
+//         "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+//     shadowUrl:
+//         "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+// });
+//
+//
+
+
+// Fix default marker icons (keep this for the User marker)
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-    iconUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-    shadowUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+    iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
+// --- Helper: Get Initials from Name ---
+const getInitials = (name) => {
+    const words = name.split(" ");
+    if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
+    return (words[0][0] + words[1][0]).toUpperCase();
+};
 
+// --- Helper: Get Stable Color based on ID ---
+const getMarkerColor = (id) => {
+    const colors = [
+        "#FF5722", // Deep Orange
+        "#E91E63", // Pink
+        "#9C27B0", // Purple
+        "#3F51B5", // Indigo
+        "#2196F3", // Blue
+        "#009688", // Teal
+        "#4CAF50", // Green
+        "#FFC107", // Amber
+    ];
+    return colors[id % colors.length];
+};
+
+// --- Generator: Create Dynamic Icon ---
+const createDynamicIcon = (name, id) => {
+    const initials = getInitials(name);
+    const color = getMarkerColor(id);
+
+    return L.divIcon({
+        className: "custom-marker-wrapper", // Used for positioning/clearing defaults
+        html: `
+            <div class="marker-pin" style="background-color: ${color}; box-shadow: 0 4px 15px ${color}66;">
+                <span>${initials}</span>
+                <div class="marker-pulse" style="border-color: ${color}"></div>
+            </div>
+        `,
+        iconSize: [40, 40],   // Size of the circle
+        iconAnchor: [20, 45], // Point of the icon which will correspond to marker's location
+        popupAnchor: [0, -40] // Point from which the popup should open relative to the iconAnchor
+    });
+};
 
 const restaurantIcon = L.divIcon({
     className: "restaurant-marker-container",   // we'll style this in CSS
@@ -97,15 +149,6 @@ export default function MapComponent() {
             style={{ height: "100%", width: "100%" , position: "relative"}}
         >
 
-            {/*<div style={{position: "absolute", top: 1, left:20, width: "0px", height: "0px", zIndex: 1000}}>*/}
-            {/*    <div style={{width: "200px", height: "50px", backgroundColor: "white", border: 'blue solid 1px', borderRadius: "5px"}}>*/}
-
-            {/*        <div>*/}
-            {/*            <p style={{fontSize: '9px'}}>{' Closest Restaurant: '}</p>*/}
-            {/*        </div>*/}
-            {/*        <p style={{color: 'blue'}}> {'BilkeBab'}</p>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
             <TileLayer
                 attribution='© OpenStreetMap contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -122,12 +165,13 @@ export default function MapComponent() {
             {/* Restaurant Markers */}
             {restaurants.map((restaurant) => {
                 const distance = calculateDistance(userLocation, restaurant);
-
+                // Generate the specific icon for this restaurant
+                const dynamicIcon = createDynamicIcon(restaurant.name, restaurant.id);
                 return (
                     <Marker
                         key={restaurant.id}
                         position={[restaurant.lat, restaurant.lng]}
-                        icon={restaurantIcon}
+                        icon={dynamicIcon}
                         eventHandlers={{
                             click: () => fetchRoute(restaurant),
                         }}

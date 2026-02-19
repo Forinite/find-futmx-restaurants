@@ -1,0 +1,54 @@
+/* Remove default Leaflet divIcon background */
+.custom-marker-wrapper {
+    background: transparent;
+    border: none;
+}
+
+/* The Circle Pin */
+.marker-pin {
+    width: 40px;
+    height: 40px;
+    border-radius: 50% 50% 50% 0; /* Tear-drop shape */
+    transform: rotate(-45deg); /* Rotate to point down */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    position: relative;
+    /* Box shadow is handled inline in JS for dynamic color matching */
+}
+
+/* The Initials Text */
+.marker-pin span {
+    transform: rotate(45deg); /* Rotate text back to be straight */
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* The Pulse Animation Ring */
+.marker-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50% 50% 0;
+    border: 1px solid transparent; /* Color set inline */
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}

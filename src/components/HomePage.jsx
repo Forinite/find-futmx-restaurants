@@ -42,7 +42,7 @@ const HomePage = () => {
     }, [userLocation, minRating, maxDistance, showOpenNow]);
 
     return (
-        <div style={{ height: "100vh", width: "100%", position: "relative" }}>
+        <div style={{ height: "100vh", width: "100%", position: "relative", maxWidth: "100vw", overflow: 'hidden' }}>
             <FilterBar
                 minRating={minRating}
                 setMinRating={setMinRating}
