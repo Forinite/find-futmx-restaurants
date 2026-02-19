@@ -1038,7 +1038,7 @@ export const restaurants = [
             { name: "Pounded Yam", price: null, image: null },
             { name: "Eba with egusi", price: null, image: null },
             { name: "Rice and stew", price: null, image: null },
-            { name: "Pottage Beans", price: null, image: null },-
+            { name: "Pottage Beans", price: null, image: null },
         ],
         socials: {
             facebook: null,
