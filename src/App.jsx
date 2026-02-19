@@ -27,12 +27,14 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import RestaurantDetail from "./components/RestaurantDetail";
+import DyanmicResturantHomePage from "./pages/DyanmicResturantHomePage.jsx";
 
 export default function App() {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurant/:id" element={<RestaurantDetail />} />
+            <Route path="/dynamic/:id" element={<DyanmicResturantHomePage />} />
         </Routes>
     );
 }

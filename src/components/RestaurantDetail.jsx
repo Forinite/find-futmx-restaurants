@@ -1,3 +1,5 @@
+// src/components/RestaurantDetail.jsx:1
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { restaurants } from "../data/restaurants";
@@ -143,6 +145,14 @@ export default function RestaurantDetail() {
 
                         {/* Action Card */}
                         <div className="action-card">
+                            {/* ✅ NEW: Button to Dynamic Page */}
+                            <button
+                                onClick={() => navigate(`/dynamic/${restaurant.id}`)}
+                                className="btn btn-menu"
+                            >
+                                🍽️ View Menu & Order
+                            </button>
+
                             <h3>Contact & Location</h3>
 
                             {/* Address Display */}

@@ -371,3 +371,20 @@
     border-radius: 6px;
     margin-bottom: 16px; /* Extra space before map */
 }
+
+/* Add to RestaurantDetail.css */
+
+.btn-menu {
+    background-color: #10a37f; /* Fresh Green */
+    color: white;
+    border: none;
+    font-size: 1.1rem; /* Slightly larger text */
+    margin-bottom: 8px; /* Space between this and Directions button */
+    box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3); /* Green glow */
+}
+
+.btn-menu:hover {
+    background-color: #0e8c6d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(16, 163, 127, 0.4);
+}
