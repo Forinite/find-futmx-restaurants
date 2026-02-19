@@ -6,8 +6,8 @@
 
 /* The Circle Pin */
 .marker-pin {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50% 50% 50% 0; /* Tear-drop shape */
     transform: rotate(-45deg); /* Rotate to point down */
     display: flex;

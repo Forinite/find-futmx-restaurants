@@ -78,9 +78,9 @@ const restaurantIcon = L.divIcon({
       style="width:35px; height:35px; position:relative; z-index:9990;"
     />
   `,
-    iconSize: [60, 60],     // bigger container to fit rings
-    iconAnchor: [30, 30],   // center the icon (half of iconSize)
-    popupAnchor: [0, -20],  // optional: adjust popup position
+    iconSize: [30, 30],     // bigger container to fit rings
+    iconAnchor: [15, 15],   // center the icon (half of iconSize)
+    popupAnchor: [0, -10],  // optional: adjust popup position
 });
 
 function RecenterMap({ position }) {
