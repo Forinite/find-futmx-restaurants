@@ -10,24 +10,12 @@ import {
     useMap
 } from "react-leaflet";
 import L from "leaflet";
-import { restaurants } from "../data/restaurants";
+// import { restaurants } from "../data/restaurants";
 import { calculateDistance } from "../utils/distance";
 import "leaflet/dist/leaflet.css";
 import "./MapComponent.css"; // Ensure you create/link this CSS file
 
 
-// Fix default marker icons
-// delete L.Icon.Default.prototype._getIconUrl;
-// L.Icon.Default.mergeOptions({
-//     iconRetinaUrl:
-//         "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-//     iconUrl:
-//         "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-//     shadowUrl:
-//         "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-// });
-//
-//
 
 
 // Fix default marker icons (keep this for the User marker)
@@ -101,7 +89,7 @@ function RecenterMap({ position }) {
     return null;
 }
 
-export default function MapComponent() {
+export default function MapComponent({ restaurants }) {
     const [userLocation, setUserLocation] = useState(null);
     const [routeCoords, setRouteCoords] = useState([]);
 
